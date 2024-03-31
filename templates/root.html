@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>しそら</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Shippori+Mincho+B1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/almond.css@latest/dist/almond.lite.min.css"
+    />
+    <style>
+      :root {
+        --primaryH: 30;
+        font-family: "Noto Sans JP", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+      h1.title {
+        font-family: "Shippori Mincho B1", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title"><a href="{{ url_for('read_root')}}">しそら</a></h1>
+    <p>
+      「しそら」は、入力された語句に関連した語句をAIが教えてくれるWebアプリです。
+    </p>
+    <p>
+      関連語句から関連語句へと、ネットサーフィンのように遷移していけるのが特徴です。
+    </p>
+    <h2>関連語句検索</h2>
+
+    <form action="{{ url_for('read_root') }}" method="get">
+      {% if response == [] %}
+      <input type="text" name="word" />
+      {% else %}
+      <input type="text" name="word" value="{{ response[0]['word'] }}" />
+      {% endif %}
+      <input type="submit" value="検索" />
+    </form>
+    {% if response != [] %}
+    <h2>関連語句リスト</h2>
+    {% for item in response %}
+    <article>
+      <h3>
+        <a href="{{ url_for('read_root')}}?word={{item['word']}}">
+          {{ item["word"] }}</a
+        >
+        <small>{{item['reason']}}</small>
+      </h3>
+      <p>{{ item["description"] }}</p>
+    </article>
+    {% endfor %} {% endif %}
+  </body>
+</html>
