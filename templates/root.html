@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>しそら Shisora ~関連語句から関連語句へと~</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3071839508960775"
-     crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,6 +33,9 @@
     <h1 class="title">
       <a href="{{ url_for('read_root')}}">しそら Shisora</a>
     </h1>
+    <!-- admax -->
+    <script src="https://adm.shinobi.jp/s/97dcba7c986887522906fee335f18e7c"></script>
+    <!-- admax -->
     <h2>About</h2>
     <p>
       「しそら」は、入力された語句に関連した語句をAIが教えてくれるWebアプリです。
@@ -73,5 +74,6 @@
       <p>{{ item["description"] }}</p>
     </article>
     {% endfor %} {% endif %}
+    
   </body>
 </html>
