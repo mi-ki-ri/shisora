@@ -3,6 +3,7 @@ from typing import Union
 from fastapi import FastAPI, Request
 from openai import OpenAI
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 templates = Jinja2Templates(directory="templates")
 
@@ -61,3 +62,9 @@ def read_root(request: Request, word: Union[str, None] = None):
         return templates.TemplateResponse(
             "root.html", {"request": request, "response": []}
         )
+
+
+@app.get("/ads.txt")
+def read_ads():
+    with open("static/ads.txt", "r") as f:
+        return f.read()
